@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma de 2 numeros</title>
+</head>
+<body>
+    <h1>Soma de dois valores e Formatação de variáveis</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente culpa voluptate molestiae fuga cum quidem. Saepe deserunt voluptas unde numquam repellat modi, magnam, quidem temporibus provident laboriosam obcaecati ullam. Earum.</p>
+    <script>
+        var n1 = Number(window.prompt('Diga um núemro: '))
+        var n2 = Number(window.prompt('Diga mais um número: '))
+        var soma = n1 + n2
+        window.alert(`A soma entre ${n1} e ${n2} é igual a ${soma}`)
+        // number + number para adição
+        // string + string para concatenação
+        // o comando prompt sempre retorna uma string para a variável
+        // convertemos a string para number com o comando Number.parseInt(n) para numero inteiro e Number.parseFloat() para real
+        // O proprio Js pode decidir o tipo com o Number(n)
+        // para converter number para string usamos String(n) ou n.toString()
+        // template string `${}` serve para simplificar a escrita com variaveis (não esquecer de usar crase)
+
+    </script>
+</body>
+</html>

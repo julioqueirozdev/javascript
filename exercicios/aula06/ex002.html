@@ -3,11 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Manipulando variaveis</title>
+    <style>
+        body{
+            background-color: rgba(140, 45, 224, 0.89);
+        }
+        h1{
+            text-align: center;
+            color: yellow;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+    </style>
 </head>
 <body>
+    <h1>Armazendando variaveis</h1>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias eum eaque sapiente atque beatae quaerat ducimus rerum, magnam dicta, explicabo odit perferendis cumque, quasi soluta expedita fuga id libero laborum.</p>
     <script>
-        window.prompt('Qual o seu nome?')
+        //Vai perguntar o nome e armazenar o valor na variavel
+        var nome = window.prompt('Qual o seu nome?')
+        //Vai exibir o nome armazenado
+        //O sinal de + tem a função de concatenação
+        window.alert('Olá, ' + nome + '!')
     </script>
 </body>
 </html>
