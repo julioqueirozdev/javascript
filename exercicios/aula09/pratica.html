@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prática de DOM</title>
+    <style>
+        div{
+            max-width: 800px;
+            min-width: 400px;
+            line-height: 1.2em;
+        }
+        h1{
+            text-align: center;
+            background-color: blueviolet;
+            color: aliceblue;
+            font: normal 20pt arial;
+        }
+        p{
+            text-align: center;
+            background-color: rgba(137, 43, 226, 0.349);
+            font: normal 15pt arial;
+        }
+        .p2{
+           background-color: rgba(0, 0, 255, 0.567); 
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1  id='titulo' >Vamos praticar DOM</h1>
+        <p>Um parágrafo simples</p>
+        <p class="p2">Mais um parágrafo</p>
+    </div>
+<script>
+    //seleção por tag name
+    var a = window.document.getElementsByTagName('p')[0]
+    window.document.writeln(a.innerText)
+    //seleção por class name
+    var b = window.document.getElementsByClassName("p2")[0]
+    window.document.write(b.innerText)
+    //query selector
+    var c = window.document.querySelector(".p2")
+    c.style.color = 'white'
+    //id selector
+    var d = window.document.getElementById('titulo') 
+    window.document.write(d.innerText)
+</script>
+</body>
+</html>
