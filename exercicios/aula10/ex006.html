@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos DOM</title>
+    <style>
+        div#area{
+            font: normal 20pt arial;
+            background-color: limegreen;
+            color: white;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="area" > <!--Definimos o evento clicar e o evento entrar e o sair direto no html onclick="clicar()" onmouseenter="entrar()" onmouseout="sair()" -->
+    Interajaaaa...
+    </div>
+    <script>
+        var a = window.document.getElementById('area') // a variável a é a area da div
+        a.addEventListener('click', clicar)// adicionamos os observadores para acionar as ações
+        a.addEventListener('mouseenter', entrar)
+        a.addEventListener('mouseout', sair)
+        function clicar(){ //definimos a função que será disparada pelo evento
+            a.innerText = 'Clicou!' // definimos uma ação executada pela função ao ser acionada pelo evento
+            a.style.background = 'red'
+        }
+        function entrar(){ // a função muda o texto da div quando entramos com o mouse na área do elemento
+            a.innerText = "Entrou!"
+            a.style.background = 'blue'
+        }
+        function sair(){ // a função que muda o texto e cor de fundo quando o mouse sai da area do elemento
+            a.innerText= 'Saiu!'
+            a.style.background = 'yellow'
+            a.style.color = 'black'
+        }
+    </script>
+</body>
+</html>

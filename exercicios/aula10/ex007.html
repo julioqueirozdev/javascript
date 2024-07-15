@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Somando Numeros</title>
+    <style>
+        body{
+            font: normal 18pt arial;
+            text-align: center;
+        }
+        input{
+            font: normal 18pt Arial;
+            width: 100px;
+        }
+
+        div{
+            line-height: 2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Somando Valores</h1>
+    <input type="number" name="txtn1" id="txtn1"> <!-- Definimos espaços onde serão adicionados valores-->
+    <input type="number" name="txtn2" id="txtn2">
+    <input type="button" value="Somar" onclick="Somar()"> <!--Definimos um botão de soma com o evendo click-->
+    <div id="res">
+        Resultado
+    </div>
+    <script>
+        function Somar(){ //definimos a função soma 
+            var tn1 = window.document.getElementById('txtn1')
+            var tn2 = window.document.querySelector('input#txtn2')
+            var res = window.document.querySelector("div#res")
+            var n1 = Number(tn1.value)// convertemos o valor das variáveis de string para number
+            var n2 = Number(tn2.value)
+            var s = n1 + n2
+            res.innerHTML = `A soma entre ${n1} e ${n2} é igual a ${s}.`
+        }
+    </script>
+</body>
+</html>
