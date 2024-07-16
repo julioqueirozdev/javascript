@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nacionalidade</title>
+    <style>
+        body{
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        h1{
+            background-color: black;
+            color: white;
+        }
+        div{
+            background-color: red;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<h1>Teste de Nacionalidade</h1>
+    Seu país: <input type="text" name="nac" id="nac">
+    <input type="button" value="Verificar" onclick="clicar()">
+    <div id="res">
+
+    </div>
+    <script>
+        function clicar() {
+        var pais = window.document.querySelector("input#nac")
+        var res = window.document.querySelector('div#res')
+        var nac = String(pais.value)
+        res.innerHTML = `<p>Vivendo em <strong>${nac}</strong></p>` 
+        if (nac == "Brasil"){
+            res.innerHTML += "<p><strong>TUUUDEE</strong>! Você é <strong>Brasileire</strong>.</p>"
+            res.style.background = 'yellow'
+            res.style.color = 'green'
+        } else {
+            res.innerHTML += "<p>Você é estrangeire sua <strong>SAFADE</strong>!</p>"
+            res.style.background = 'lightblue'
+            res.style.color = 'black'
+        }    
+        }
+    </script>    
+</body>
+</html>
