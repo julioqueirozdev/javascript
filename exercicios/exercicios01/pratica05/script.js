@@ -1,5 +1,5 @@
 
-var num = []
+let num = []
 var list = document.getElementById('selnum')
 var res = document.getElementById('res')
 var maior = 0
