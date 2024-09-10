@@ -7,6 +7,7 @@ export class Pessoa {
     _peso // tipo float ou real
     _altura //_ o underline indica que os atributos são privados
     _imc
+    _classificacao // tipo string
     static totalPessoas = 0 //atributo estático ou da classe
 
     // métodos = funções ou comportamentos 
@@ -17,16 +18,17 @@ export class Pessoa {
         this._idade = idade
         this._peso = peso
         this._altura = altura
-        this._imc = this._peso / (this._altura * this._altura)
+        this._imc = this._peso / (this._altura * this._altura).toFixed(2)
+        this._classificacao = this.classificaIMC()
         Pessoa.totalPessoas += 1 // contador com incremento 
 
     }
 
     //função sem passagem de parametros pois ja indicamos peso e altura anteriormente 
 
-    // esta função equivale a um metodo set
+    // esta função equivale a um metodo get imc
     calculaImc(){
-        return (this._peso / (this._altura * this._altura)).toFixed(2)
+        return this.imc
     }
     // se um método dentro de uma classe possui return, ela é uma função, se não, é um procedimento.
 
