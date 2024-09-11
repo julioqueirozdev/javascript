@@ -1,4 +1,8 @@
-import { Pessoa } from "../models/Pessoa";
+import { Pessoa } from "../models/Pessoa.js"
+import { ListaPessoas } from "../models/ListaPessoas.js"
+import { PessoaView } from "../views/PessoaView.js"
+import { Mensagem } from "../models/Mensagem.js"
+import { MensagemView } from "../views/MensagemView.js"
 
 export class PessoaController {
 
@@ -17,6 +21,18 @@ export class PessoaController {
         this._inputIdade = document.querySelector('#idade')
         this._inputPeso = document.querySelector('#peso')
         this._inputAltura = document.querySelector('#altura')
+
+        //criar lista de pessoas
+        this._listaPessoas = new ListaPessoas()
+
+        //view
+        this._pessoasView = new PessoaView(document.querySelector('#dados'))
+        this._pessoasView.update(this._listaPessoas)
+
+        //mensagem
+        this._mensagem = new Mensagem()
+        this._mensagemView = new MensagemView(document.querySelector('#mensagem'))
+        this._mensagemView.update(this._mensagem)
     }
 
     //adicionar pessoa
@@ -25,8 +41,21 @@ export class PessoaController {
         event.preventDefault() //mantem a mesma página
 
         //criar uma pessoa
-        this._criaPessoa()
-        console.log(this._criaPessoa())
+        // this._criaPessoa()
+        // console.log(this._criaPessoa())
+
+        //adicionar nova pessoa na lista
+        this._listaPessoas.adiciona(this._criaPessoa())
+        console.log(this._listaPessoas.pessoas)
+
+        //definir e atualizar a mensagem
+        this._mensagem.texto = 'Pessoa cadaastrada com sucesso!'
+        this._mensagemView.update(this._mensagem)
+
+        //atualização de tela
+        this._pessoasView.update(this._listaPessoas)
+
+
     }
 
     //criar pessoa
