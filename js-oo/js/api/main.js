@@ -1,4 +1,4 @@
-import { PessoaController } from '../controllers/PessoaController.js'
+import { PessoaController } from './controllers/PessoaController.js'
 
 let pessoaController = new PessoaController()
 

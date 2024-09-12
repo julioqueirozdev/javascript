@@ -1,8 +1,8 @@
 export class ListaPessoas {
     
     //criamos um atributo chamado pessoas que é um array
-    constructor (){
-        this._pessoas = []
+    constructor (lista=[]){
+        this._pessoas = lista
     }
 
     //método para adicionar pessoa no array

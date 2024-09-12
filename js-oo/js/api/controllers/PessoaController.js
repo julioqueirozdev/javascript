@@ -3,6 +3,7 @@ import { ListaPessoas } from "../models/ListaPessoas.js"
 import { PessoaView } from "../views/PessoaView.js"
 import { Mensagem } from "../models/Mensagem.js"
 import { MensagemView } from "../views/MensagemView.js"
+import { PessoasRepository } from "../repositories/PessoasRepository.js"
 
 export class PessoaController {
 
@@ -22,8 +23,18 @@ export class PessoaController {
         this._inputPeso = document.querySelector('#peso')
         this._inputAltura = document.querySelector('#altura')
 
+
+         ///////
+        //repositorio
+        this._pessoasRepository = new PessoasRepository()
+        console.log(this._pessoasRepository)
+        let lista = this._pessoasRepository.ler()
+        console.log(lista)
+        ////////////////
+
+
         //criar lista de pessoas
-        this._listaPessoas = new ListaPessoas()
+        this._listaPessoas = new ListaPessoas(lista)
 
         //view
         this._pessoasView = new PessoaView(document.querySelector('#dados'))
@@ -33,6 +44,8 @@ export class PessoaController {
         this._mensagem = new Mensagem()
         this._mensagemView = new MensagemView(document.querySelector('#mensagem'))
         this._mensagemView.update(this._mensagem)
+
+       
     }
 
     //adicionar pessoa
@@ -41,21 +54,19 @@ export class PessoaController {
         event.preventDefault() //mantem a mesma página
 
         //criar uma pessoa
-        // this._criaPessoa()
-        // console.log(this._criaPessoa())
+        //adicionar nova pessoa na lista e atualizar a tela
+        const pessoaAdd = this._criaPessoa()
+        this._listaPessoas.adiciona(pessoaAdd)
+        // this._pessoasView.update(this._listaPessoas)
 
-        //adicionar nova pessoa na lista
-        this._listaPessoas.adiciona(this._criaPessoa())
-        console.log(this._listaPessoas.pessoas)
+        //adicionar repositorio
+
+        this._pessoasRepository.criar(pessoaAdd)
+        this._pessoasView.update(this._listaPessoas)
 
         //definir e atualizar a mensagem
         this._mensagem.texto = 'Pessoa cadaastrada com sucesso!'
         this._mensagemView.update(this._mensagem)
-
-        //atualização de tela
-        this._pessoasView.update(this._listaPessoas)
-
-
     }
 
     //criar pessoa

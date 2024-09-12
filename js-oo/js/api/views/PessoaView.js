@@ -1,9 +1,11 @@
-export class PessoaView {
+import { View } from "./View.js"
+
+export class PessoaView extends View {
     constructor (elemento){
-        this._elemento = elemento
+        super(elemento)
     }
 
-    _template(model) {
+    template(model) {
         return `
         <table>
             <thead>
@@ -15,12 +17,12 @@ export class PessoaView {
                 ${model.pessoas.map(pessoa => {
                 return `
                 <tr>
-                    <td>${pessoa.nome}</td>
-                    <td>${pessoa.idade}</td>
-                    <td>${pessoa.peso}</td>
-                    <td>${pessoa.altura}</td>
-                    <td>${pessoa.imc.toFixed(2)}</td>
-                    <td>${pessoa.classificaIMC()}</td>
+                    <td>${pessoa._nome}</td>
+                    <td>${pessoa._idade}</td>
+                    <td>${pessoa._peso}</td>
+                    <td>${pessoa._altura}</td>
+                    <td>${pessoa._imc.toFixed(2)}</td>
+                    <td>${pessoa._classificacao}</td>
                 </tr>
                 `
             }).join('')}
@@ -29,7 +31,4 @@ export class PessoaView {
         `
     } //join junta tudo em uma linha só
 
-    update(model){
-        this._elemento.innerHTML = this._template(model)
-    }
 }
