@@ -4,7 +4,7 @@ let pessoaController = new PessoaController()
 
 //controlar envio do formulário e exibição da tela
 
-let formulario = document.querySelector('form')
+let formulario = document.querySelector('#formulario')
 
 //escutador de evento no formulario
 
@@ -18,43 +18,83 @@ formulario.addEventListener('submit',(event) => {
 
 })
 
+// formulario apagar
 
+const formApagarEditar = document.querySelector('#formApagarEditar')
+const btnApagar = document.querySelector('#btnApagar')
+const btnEditar = document.querySelector('#btnEditar')
 
+formApagarEditar.addEventListener('submit', (event) => {
+    event.preventDefault()
+})
 
+btnApagar.addEventListener('click', () => {
+    //console.log('Apagar')
 
+    let id = document.querySelector('#id').value
+    console.log('Apagar registro ' + id)
 
+    document.querySelector('#id').value = null
 
-// criar novo objeto a partir da classe, instanciar 
+    //Interações com a janela modal 
+    //abrir janela modal
 
-// let pessoa1 = new Pessoa('Julio', 29, 76, 1.80)
-// let pessoa2 = new Pessoa('Ana', 30, 65, 1.60)
-// let pessoa3 = new Pessoa('Bia', 45, 60, 1.65)
-// let pessoa4 = new Pessoa('Marco', 19, 70, 1.90)
+    openModal(`Deseja apagar o registro ${id}?`)
 
-// console.log(Pessoa.totalPessoas)
-// console.log ('Situação ' + pessoa1.classificaIMC())
+    //se clicar no botão sim
+    document.querySelector('#sim').addEventListener('click', () => {
+        pessoaController.apaga(id)
+        //id = null //apaga o id 
+        closeModal()
+    })
 
-// console.log("Nome " + pessoa1.nome)
-// console.log("Idade " + pessoa1.idade)
-// console.log("IMC " + pessoa1.imc)
+})
 
+btnEditar.addEventListener('click', () => {
+    console.log('Editar')
 
-// atribuir valores para os atributos de um objeto
+    //rolar pagina para cima 
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    })
 
-// pessoa1._nome = 'Julio'
-// pessoa1._idade = 29
-// pessoa1._peso = 76
-// pessoa1._altura = 1.80
+    document.querySelector('#nome').focus()
+    let id = document.querySelector('#id').value
+    console.log('Editar registro ' + id)
 
-// pessoa2._nome = 'Ana'
-// pessoa2._idade = 30
-// pessoa2._peso = 65
-// pessoa2._altura = 1.60
+    document.querySelector('#idPessoa').value = id
+    document.querySelector('#id').value = null
 
-// console.log(pessoa1)
-// console.log(pessoa2)
-// console.log(pessoa3)
-// console.log(pessoa4)
+    let pessoa = pessoaController.buscaPorId(id)
+    console.log(pessoa)
 
+    if(pessoa){
+        let { _nome, _idade, _peso, _altura } = pessoa
+        //preencher formulario com dados
+        pessoaController.preencheFormulario(_nome, _idade, _peso, _altura)    
+    }
 
-// console.log(pessoa1.calculaImc())
+})
+
+//controles da janela modal
+function openModal(mensagem){
+    document.querySelector('#modal').classList.add('active')
+    document.querySelector('#mensagemModal').innerHetml = 
+    `
+    <h2>${mensagem}</h2>
+    `
+}
+
+function closeModal(){
+    document.querySelector('#modal').classList.remove('active')
+}
+
+// Evento para fechar janela modal
+
+document.querySelector('#modalClose').addEventListener('click', closeModal)
+
+//botão nao
+document.querySelector('#nao').addEventListener('click', closeModal)
+// Controles da janela modal //

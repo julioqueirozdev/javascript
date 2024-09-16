@@ -6,8 +6,16 @@ export class ListaPessoas {
     }
 
     //método para adicionar pessoa no array
-    adiciona (pessoa) {
+    adiciona(pessoa) {
         this._pessoas.push(pessoa)
+    }
+
+    remove(id){
+        this._pessoas.splice(id, 1)
+    }
+
+    atualiza(id, pessoaAtualizada){
+        this._pessoas[id] = pessoaAtualizada
     }
 
     //programação defensiva retornar uma cópia do array

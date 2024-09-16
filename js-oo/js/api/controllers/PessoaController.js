@@ -27,7 +27,7 @@ export class PessoaController {
          ///////
         //repositorio
         this._pessoasRepository = new PessoasRepository()
-        console.log(this._pessoasRepository)
+        //console.log(this._pessoasRepository)
         let lista = this._pessoasRepository.ler()
         console.log(lista)
         ////////////////
@@ -52,8 +52,12 @@ export class PessoaController {
     adiciona(event){
 
         event.preventDefault() //mantem a mesma página
+        const id = document.querySelector('#idPessoa').value
 
-        //criar uma pessoa
+        //se não tiver id, adiciona senao atualiza
+        if(!id){
+
+            //criar uma pessoa
         //adicionar nova pessoa na lista e atualizar a tela
         const pessoaAdd = this._criaPessoa()
         this._listaPessoas.adiciona(pessoaAdd)
@@ -64,9 +68,16 @@ export class PessoaController {
         this._pessoasRepository.criar(pessoaAdd)
         this._pessoasView.update(this._listaPessoas)
 
-        //definir e atualizar a mensagem
+         //definir e atualizar a mensagem
         this._mensagem.texto = 'Pessoa cadaastrada com sucesso!'
         this._mensagemView.update(this._mensagem)
+
+        } else {
+            console.log(`ID => ` + id)
+            this.atualiza(id) // atualiza do controller
+        }
+
+       
     }
 
     //criar pessoa
@@ -89,11 +100,48 @@ export class PessoaController {
         this._inputNome.focus()
     }
 
-    // preencheFormulario(nome, idade, peso, altura) {
-    //     this._inputNome.value   = nome
-    //     this._inputIdade.value  = idade
-    //     this._inputPeso.value   = peso
-    //     this._inputAltura.value = altura
-    // }
+    preencheFormulario(nome, idade, peso, altura) {
+        this._inputNome.value   = nome
+        this._inputIdade.value  = idade
+        this._inputPeso.value   = peso
+        this._inputAltura.value = altura
+    }
+
+    apaga(id){
+        //se tem id pode apagar o registro 
+        if(id){
+            this._listaPessoas.remove(id)//remove da view
+            this._pessoasView.update(this._listaPessoas)//atualizar a view
+
+            this._pessoasRepository.apagar(id) // remove do repository
+            console.log('PessoaController Apagou')
+        }
+    }
+
+
+    atualiza(id){
+        //criar nova pessoa atualizada
+        let pessoaAtualizada = this._criaPessoa()
+        console.log(pessoaAtualizada)
+
+        //atualizar repositório
+        this._pessoasRepository.atualizar(id, pessoaAtualizada)
+        console.log(id, pessoaAtualizada)
+        console.log('Atualizou lista')
+
+        //atualizar a lista
+        this._listaPessoas.atualiza(id, pessoaAtualizada)
+        console.log('Atualizou lista')
+
+        //atualizar a view
+        this._pessoasView.update(this._listaPessoas)
+        document.querySelector('#idPessoa').value = null
+
+    }
+
+    buscaPorId(id) {
+        let pessoaEncontrada = this._pessoasRepository.lerPorId(id)
+        return pessoaEncontrada
+    }
 
 }

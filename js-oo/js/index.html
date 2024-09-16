@@ -14,7 +14,7 @@
 
                 <div id='mensagem'></div>
 
-                <!-- <div class='form-group'>
+                <div class='form-group'>
                     <label for="idPessoa">ID</label>
                     <input 
                         type="number"
@@ -23,7 +23,7 @@
                         placeholder="ID"
                         disabled
                     />
-                </div> -->
+                </div>
 
                 <div class='form-group'>
                     <label for="nome">Nome <span class='detalhes'>*</span> </label>
@@ -83,8 +83,63 @@
                         Calcular
                     </button>
                 </div>
-
             </form>
+    
+                <!-- JANELA MODAL -->
+                <div class="modal" id="modal">
+                <div class="modal-content">
+                    <header class="modal-header">
+                        <h2 id="titulo"></h2>
+                        <span class="modal-close" id="modalClose">&#10006;</span>
+                    </header>
+                    <div id="mensagemModal">
+                    </div>
+                    <footer class="modal-footer" id="botoesModal">
+                        <button id="sim" class="btn btn-edit">Sim</button>
+                        <button id="nao" class="btn btn-del">Não</button>
+                    </footer>
+                </div>
+            </div>
+            <!-- FIM JANELA MODAL -->
+
+                <!-- editar e apagar -->
+                <div class='formApagarEditar'>
+                    <h2>Digite o id para Apagar ou Editar o registro</h2>
+                    <form method='POST' id='formApagarEditar'>
+                        <div class='colunas2'>
+    
+                            <div class="form-group">
+                                <button
+                                    type="submit"
+                                    id='btnApagar' class='btn btn-del'
+                                    name='btnApagar'>
+                                    Apagar
+                                </button>
+                            </div>
+    
+                            <div class='form-group'>
+                                <input
+                                    type="number"
+                                    name="id"
+                                    id="id"
+                                    min='0' max='999' step='1'
+                                    placeholder="ID"
+                                />
+                            </div>
+        
+                            <div class="form-group">
+                                <button
+                                    type="submit"
+                                    id='btnEditar' class='btn btn-edit'
+                                    name='btnEditar'>
+                                    Editar
+                                </button>
+                            </div>
+                        </div>
+    
+                    </form>
+                </div>
+
             <!-- view -->
             <div id="dados">
                 <!-- table -->

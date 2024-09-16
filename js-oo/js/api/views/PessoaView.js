@@ -10,13 +10,14 @@ export class PessoaView extends View {
         <table>
             <thead>
                 <tr>
-                    <th>Nome</th> <th>Idade</th> <th>Peso</th> <th>Altura</th> <th>IMC</th> <th>Situação</th>
+                    <th>ID</th> <th>Nome</th> <th>Idade</th> <th>Peso</th> <th>Altura</th> <th>IMC</th> <th>Situação</th>
                 </tr>
             </thead>
             <tbody>
-                ${model.pessoas.map(pessoa => {
+                ${model.pessoas.map((pessoa, indice) => {
                 return `
                 <tr>
+                    <td>${indice}</td>
                     <td>${pessoa._nome}</td>
                     <td>${pessoa._idade}</td>
                     <td>${pessoa._peso}</td>
