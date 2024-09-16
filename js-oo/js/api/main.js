@@ -1,4 +1,5 @@
 import { PessoaController } from './controllers/PessoaController.js'
+import { ModalHelper } from './helpers/ModalHelpers.js'
 
 let pessoaController = new PessoaController()
 
@@ -12,6 +13,9 @@ formulario.addEventListener('submit',(event) => {
 
     //adicionar pessoa
     pessoaController.adiciona(event)
+
+    ModalHelper.ocultarBotoes()
+    ModalHelper.modal('Cadastro', 'Pessoa cadastrada ou atualizada!')
 
     //limpar formulario
     pessoaController._limpaFormulario()
@@ -39,13 +43,16 @@ btnApagar.addEventListener('click', () => {
     //Interações com a janela modal 
     //abrir janela modal
 
-    openModal(`Deseja apagar o registro ${id}?`)
+    ModalHelper.mostrarBotoes()
+    ModalHelper.modal('Apagar Registro', `Deseja apagar o registro ${id}?`)
+
+    // openModal(`Deseja apagar o registro ${id}?`)
 
     //se clicar no botão sim
     document.querySelector('#sim').addEventListener('click', () => {
         pessoaController.apaga(id)
-        //id = null //apaga o id 
-        closeModal()
+        id = null //apaga o id 
+        ModalHelper.closeModal()
     })
 
 })
@@ -78,23 +85,25 @@ btnEditar.addEventListener('click', () => {
 
 })
 
-//controles da janela modal
-function openModal(mensagem){
-    document.querySelector('#modal').classList.add('active')
-    document.querySelector('#mensagemModal').innerHetml = 
-    `
-    <h2>${mensagem}</h2>
-    `
-}
+ModalHelper.fecharJanela()
 
-function closeModal(){
-    document.querySelector('#modal').classList.remove('active')
-}
+//controles da janela modal
+// function openModal(mensagem){
+//     document.querySelector('#modal').classList.add('active')
+//     document.querySelector('#mensagemModal').innerHetml = 
+//     `
+//     <h2>${mensagem}</h2>
+//     `
+// }
+
+// function closeModal(){
+//     document.querySelector('#modal').classList.remove('active')
+// }
 
 // Evento para fechar janela modal
 
-document.querySelector('#modalClose').addEventListener('click', closeModal)
+// document.querySelector('#modalClose').addEventListener('click', closeModal)
 
 //botão nao
-document.querySelector('#nao').addEventListener('click', closeModal)
+// document.querySelector('#nao').addEventListener('click', closeModal)
 // Controles da janela modal //

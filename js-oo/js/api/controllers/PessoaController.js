@@ -1,9 +1,12 @@
 import { Pessoa } from "../models/Pessoa.js"
 import { ListaPessoas } from "../models/ListaPessoas.js"
 import { PessoaView } from "../views/PessoaView.js"
-import { Mensagem } from "../models/Mensagem.js"
-import { MensagemView } from "../views/MensagemView.js"
+// import { Mensagem } from "../models/Mensagem.js"
+// import { MensagemView } from "../views/MensagemView.js"
+import { Modal } from "../models/Modal.js"
+import { ModalView } from "../views/ModalView.js"
 import { PessoasRepository } from "../repositories/PessoasRepository.js"
+
 
 export class PessoaController {
 
@@ -41,9 +44,14 @@ export class PessoaController {
         this._pessoasView.update(this._listaPessoas)
 
         //mensagem
-        this._mensagem = new Mensagem()
-        this._mensagemView = new MensagemView(document.querySelector('#mensagem'))
-        this._mensagemView.update(this._mensagem)
+        // this._mensagem = new Mensagem()
+        // this._mensagemView = new MensagemView(document.querySelector('#mensagem'))
+        // this._mensagemView.update(this._mensagem)
+
+        //modal
+        this._modal = new Modal()
+        this._modalView = new ModalView(document.querySelector('#mensagemModal'))
+        this._modalView.update(this._modal)
 
        
     }
@@ -69,8 +77,11 @@ export class PessoaController {
         this._pessoasView.update(this._listaPessoas)
 
          //definir e atualizar a mensagem
-        this._mensagem.texto = 'Pessoa cadaastrada com sucesso!'
-        this._mensagemView.update(this._mensagem)
+        // this._mensagem.texto = 'Pessoa cadaastrada com sucesso!'
+        // this._mensagemView.update(this._mensagem)
+
+        //modal
+        this._modalView(this._modal)
 
         } else {
             console.log(`ID => ` + id)
@@ -108,14 +119,20 @@ export class PessoaController {
     }
 
     apaga(id){
+        
+        if(!id){
+            console.log('ID não foi informado')
+            return
+        }
+        
         //se tem id pode apagar o registro 
-        if(id){
+        // if(id){
             this._listaPessoas.remove(id)//remove da view
             this._pessoasView.update(this._listaPessoas)//atualizar a view
 
             this._pessoasRepository.apagar(id) // remove do repository
             console.log('PessoaController Apagou')
-        }
+        // }
     }
 
 
