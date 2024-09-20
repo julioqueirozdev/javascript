@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objetos</title>
+</head>
+<body>
+    <h1>Objetos</h1>
+    <div>
+        <input type="text" name="age" size="3" onchange="validade(this, 18, 99)">
+    </div>
+    <div>
+        <form name="myForm">
+            <p>
+              <label
+                >Nome do form:<input type="text" name="text1" value="Beluga"
+              /></label>
+            </p>
+            <p>
+              <input
+                name="button1"
+                type="button"
+                value="Mostre o Nome do Form"
+                onclick="this.form.text1.value = this.form.name" />
+            </p>
+          </form>
+          
+    </div>
+    <script src="pratica.js"></script>
+</body>
+</html>
